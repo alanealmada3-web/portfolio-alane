@@ -574,6 +574,7 @@
         .panel,
         .skill-group,
         .project-card,
+        .differential-card,
         .contact-card,
         .contact-form {
             border: 1px solid var(--line);
@@ -703,7 +704,7 @@
         .project-card {
             position: relative;
             display: flex;
-            min-height: 370px;
+            min-height: 560px;
             overflow: hidden;
             flex-direction: column;
             justify-content: space-between;
@@ -735,6 +736,105 @@
 
         .project-card:hover::before {
             opacity: 1;
+        }
+
+        .project-media {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            background:
+                radial-gradient(circle at 18% 18%, rgba(139, 92, 246, 0.32), transparent 12rem),
+                linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.72));
+            aspect-ratio: 16 / 10;
+        }
+
+        [data-theme="light"] .project-media {
+            background:
+                radial-gradient(circle at 18% 18%, rgba(139, 92, 246, 0.18), transparent 12rem),
+                linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(226, 232, 240, 0.82));
+        }
+
+        .project-media::before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius);
+            background: rgba(2, 6, 23, 0.54);
+        }
+
+        [data-theme="light"] .project-media::before {
+            background: rgba(255, 255, 255, 0.68);
+        }
+
+        .mockup-bar {
+            position: absolute;
+            top: 26px;
+            left: 28px;
+            right: 28px;
+            height: 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0.72;
+        }
+
+        .mockup-content {
+            position: absolute;
+            inset: 56px 28px 26px;
+            display: grid;
+            grid-template-columns: 0.7fr 1fr;
+            gap: 12px;
+        }
+
+        .mockup-panel,
+        .mockup-row {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.065);
+        }
+
+        .mockup-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .mockup-row {
+            min-height: 18px;
+        }
+
+        .project-section-title {
+            display: block;
+            margin: 20px 0 10px;
+            color: var(--muted-strong);
+            font-size: 0.78rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 9px;
+            margin-top: 10px;
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            gap: 10px;
+            color: var(--muted-strong);
+            font-size: 0.92rem;
+        }
+
+        .feature-list li::before {
+            content: "";
+            flex: 0 0 auto;
+            width: 7px;
+            height: 7px;
+            margin-top: 9px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
         .project-top {
@@ -801,6 +901,50 @@
         .project-actions .btn {
             min-height: 42px;
             padding: 10px 14px;
+            font-size: 0.92rem;
+        }
+
+        .differentials-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .differential-card {
+            padding: 20px;
+            transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+        }
+
+        .differential-card:hover {
+            border-color: rgba(139, 92, 246, 0.48);
+            background: rgba(15, 23, 42, 0.9);
+            transform: translateY(-5px);
+        }
+
+        [data-theme="light"] .differential-card:hover {
+            background: rgba(255, 255, 255, 0.94);
+        }
+
+        .differential-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 14px;
+            border-radius: var(--radius);
+            background: rgba(6, 182, 212, 0.14);
+            color: var(--secondary);
+            font-size: 0.82rem;
+            font-weight: 900;
+        }
+
+        .differential-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.02rem;
+        }
+
+        .differential-card p {
+            color: var(--muted);
             font-size: 0.92rem;
         }
 
@@ -928,7 +1072,7 @@
             }
 
             .nav-links {
-                width: calc(100% - 54px);
+                width: calc(100% - 112px);
                 overflow-x: auto;
                 padding-bottom: 2px;
             }
@@ -938,6 +1082,10 @@
             .about-grid,
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .differentials-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
             .hero {
@@ -956,7 +1104,8 @@
             }
 
             .skills-layout,
-            .projects-grid {
+            .projects-grid,
+            .differentials-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1036,6 +1185,7 @@
                         <a href="#sobre" data-i18n="navAbout">Sobre</a>
                         <a href="#skills" data-i18n="navSkills">Skills</a>
                         <a href="#projetos" data-i18n="navProjects">Projetos</a>
+                        <a href="#diferenciais" data-i18n="navDifferentials">Diferenciais</a>
                         <a href="#contato" data-i18n="navContact">Contato</a>
                     </div>
                     <button class="language-toggle" type="button" aria-label="Switch to English" title="Mudar idioma">
@@ -1114,14 +1264,15 @@
                     <div class="about-grid">
                         <article class="panel">
                             <p data-i18n="aboutP1">
-                                Sou Alane Martins, estudante de Ciência da Computação e desenvolvedora Full Stack em formação.
-                                Estou em busca de uma oportunidade na área de tecnologia para aplicar meus conhecimentos,
-                                crescer profissionalmente e contribuir com projetos reais.
+                                Olá! Sou Alane Martins, estudante de Ciência da Computação e desenvolvedora Full Stack em formação.
+                                Tenho interesse em desenvolvimento web e na criação de sistemas funcionais, responsivos e bem
+                                estruturados, com foco em resolver problemas reais.
                             </p>
                             <p data-i18n="aboutP2">
-                                Tenho interesse em desenvolvimento web, autenticação de usuários, interfaces responsivas,
-                                organização de código e criação de sistemas que resolvem problemas do dia a dia. Meu perfil
-                                une dedicação, aprendizado contínuo e vontade de evoluir junto com equipes de tecnologia.
+                                Atualmente, venho desenvolvendo projetos práticos envolvendo autenticação de usuários, interfaces
+                                responsivas, organização de código e deploy de aplicações. Estou em busca de uma oportunidade na
+                                área de tecnologia para continuar aprendendo, ganhar experiência prática e contribuir com equipes
+                                e projetos inovadores.
                             </p>
                         </article>
 
@@ -1201,6 +1352,18 @@
                     <div class="projects-grid">
                         <article class="project-card">
                             <div>
+                                <div class="project-media" aria-label="Prévia visual do Sistema de Login Corporativo">
+                                    <div class="mockup-bar"></div>
+                                    <div class="mockup-content">
+                                        <div class="mockup-panel"></div>
+                                        <div class="mockup-list">
+                                            <span class="mockup-row"></span>
+                                            <span class="mockup-row"></span>
+                                            <span class="mockup-row"></span>
+                                            <span class="mockup-row"></span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="project-top">
                                     <span class="project-icon">SL</span>
                                     <span class="project-status" data-i18n="projectStatusProgress">Em evolução</span>
@@ -1210,6 +1373,13 @@
                                     Sistema de autenticação corporativa com níveis de acesso (Funcionário, Equipe de T.I
                                     e Administrador), gerenciamento de chamados técnicos e controle de usuários.
                                 </p>
+                                <strong class="project-section-title" data-i18n="featuresTitle">Funcionalidades</strong>
+                                <ul class="feature-list">
+                                    <li data-i18n="project1Feature1">Autenticação de usuários com fluxo corporativo.</li>
+                                    <li data-i18n="project1Feature2">Níveis de acesso para Funcionário, Equipe de T.I e Administrador.</li>
+                                    <li data-i18n="project1Feature3">Gerenciamento de chamados técnicos e controle de usuários.</li>
+                                </ul>
+                                <strong class="project-section-title" data-i18n="techTitle">Tecnologias usadas</strong>
                                 <div class="project-tags">
                                     <span class="project-tag">JavaScript</span>
                                     <span class="project-tag">Node.js</span>
@@ -1223,12 +1393,24 @@
                             </div>
                             <div class="project-actions">
                                 <a class="btn" href="https://sistema-login-kanz.onrender.com/" target="_blank" rel="noopener" data-i18n="btnViewProject">Ver Projeto</a>
-                                <a class="btn secondary" href="https://github.com/alanealmada3-web" target="_blank" rel="noopener">GitHub</a>
+                                <a class="btn secondary" href="https://github.com/alanealmada3-web/sistema-login" target="_blank" rel="noopener" data-i18n="btnViewCode">Ver código</a>
                             </div>
                         </article>
 
                         <article class="project-card">
                             <div>
+                                <div class="project-media" aria-label="Prévia visual do Portfólio Pessoal">
+                                    <div class="mockup-bar"></div>
+                                    <div class="mockup-content">
+                                        <div class="mockup-panel"></div>
+                                        <div class="mockup-list">
+                                            <span class="mockup-row"></span>
+                                            <span class="mockup-row"></span>
+                                            <span class="mockup-row"></span>
+                                            <span class="mockup-row"></span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="project-top">
                                     <span class="project-icon">PF</span>
                                     <span class="project-status" data-i18n="projectStatusOnline">Online</span>
@@ -1238,17 +1420,67 @@
                                     Portfólio profissional responsivo desenvolvido para apresentar habilidades,
                                     tecnologias e projetos.
                                 </p>
+                                <strong class="project-section-title" data-i18n="featuresTitle">Funcionalidades</strong>
+                                <ul class="feature-list">
+                                    <li data-i18n="project2Feature1">Layout moderno e responsivo para desktop e celular.</li>
+                                    <li data-i18n="project2Feature2">Alternância de tema claro/escuro e idioma PT/EN.</li>
+                                    <li data-i18n="project2Feature3">Contato profissional com currículo, redes e formulário.</li>
+                                </ul>
+                                <strong class="project-section-title" data-i18n="techTitle">Tecnologias usadas</strong>
                                 <div class="project-tags">
                                     <span class="project-tag">HTML</span>
                                     <span class="project-tag">CSS</span>
                                     <span class="project-tag">JavaScript</span>
                                     <span class="project-tag">Responsivo</span>
+                                    <span class="project-tag">GitHub Pages</span>
                                 </div>
                             </div>
                             <div class="project-actions">
                                 <a class="btn" href="https://alanealmada3-web.github.io/portfolio/" target="_blank" rel="noopener" data-i18n="btnViewProject">Ver Projeto</a>
-                                <a class="btn secondary" href="https://github.com/alanealmada3-web" target="_blank" rel="noopener">GitHub</a>
+                                <a class="btn secondary" href="https://github.com/alanealmada3-web/portfolio" target="_blank" rel="noopener" data-i18n="btnViewCode">Ver código</a>
                             </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="diferenciais">
+                <div class="container">
+                    <div class="section-heading">
+                        <div>
+                            <span class="section-label" data-i18n="differentialsLabel">Diferenciais</span>
+                            <h2 data-i18n="differentialsTitle">Detalhes que aproximam os projetos de um ambiente profissional.</h2>
+                        </div>
+                        <p class="section-description" data-i18n="differentialsIntro">
+                            Pontos técnicos pensados para demonstrar prática com publicação, usabilidade, segurança e organização.
+                        </p>
+                    </div>
+
+                    <div class="differentials-grid">
+                        <article class="differential-card">
+                            <span class="differential-icon">DP</span>
+                            <h3 data-i18n="diffDeployTitle">Deploy</h3>
+                            <p data-i18n="diffDeployText">Projetos publicados e acessíveis online para demonstração.</p>
+                        </article>
+                        <article class="differential-card">
+                            <span class="differential-icon">RS</span>
+                            <h3 data-i18n="diffResponsiveTitle">Responsividade</h3>
+                            <p data-i18n="diffResponsiveText">Interfaces adaptadas para celular, tablet e desktop.</p>
+                        </article>
+                        <article class="differential-card">
+                            <span class="differential-icon">AU</span>
+                            <h3 data-i18n="diffAuthTitle">Autenticação</h3>
+                            <p data-i18n="diffAuthText">Fluxos de login pensados para acesso seguro e organizado.</p>
+                        </article>
+                        <article class="differential-card">
+                            <span class="differential-icon">CD</span>
+                            <h3 data-i18n="diffCodeTitle">Organização de código</h3>
+                            <p data-i18n="diffCodeText">Separação clara de responsabilidades e estrutura fácil de evoluir.</p>
+                        </article>
+                        <article class="differential-card">
+                            <span class="differential-icon">NA</span>
+                            <h3 data-i18n="diffAccessTitle">Níveis de acesso</h3>
+                            <p data-i18n="diffAccessText">Perfis distintos para usuários, equipe de T.I e administradores.</p>
                         </article>
                     </div>
                 </div>
@@ -1320,6 +1552,7 @@
                 navAbout: "Sobre",
                 navSkills: "Skills",
                 navProjects: "Projetos",
+                navDifferentials: "Diferenciais",
                 navContact: "Contato",
                 heroPill: "Disponível para oportunidades em tecnologia",
                 heroSubtitle: "Desenvolvedora Full Stack em formação",
@@ -1334,8 +1567,8 @@
                 aboutLabel: "Sobre mim",
                 aboutTitle: "Perfil profissional voltado para desenvolvimento web.",
                 aboutIntro: "Em constante evolução, com foco em construir soluções organizadas, responsivas e úteis para pessoas e empresas.",
-                aboutP1: "Sou Alane Martins, estudante de Ciência da Computação e desenvolvedora Full Stack em formação. Estou em busca de uma oportunidade na área de tecnologia para aplicar meus conhecimentos, crescer profissionalmente e contribuir com projetos reais.",
-                aboutP2: "Tenho interesse em desenvolvimento web, autenticação de usuários, interfaces responsivas, organização de código e criação de sistemas que resolvem problemas do dia a dia. Meu perfil une dedicação, aprendizado contínuo e vontade de evoluir junto com equipes de tecnologia.",
+                aboutP1: "Olá! Sou Alane Martins, estudante de Ciência da Computação e desenvolvedora Full Stack em formação. Tenho interesse em desenvolvimento web e na criação de sistemas funcionais, responsivos e bem estruturados, com foco em resolver problemas reais.",
+                aboutP2: "Atualmente, venho desenvolvendo projetos práticos envolvendo autenticação de usuários, interfaces responsivas, organização de código e deploy de aplicações. Estou em busca de uma oportunidade na área de tecnologia para continuar aprendendo, ganhar experiência prática e contribuir com equipes e projetos inovadores.",
                 aboutFocus1: "Boa base em front-end com HTML, CSS, JavaScript e React.",
                 aboutFocus2: "Estudos em back-end com Node.js, Python e Java.",
                 aboutFocus3: "Interesse em sistemas corporativos, banco de dados e suporte técnico.",
@@ -1353,9 +1586,31 @@
                 projectStatusOnline: "Online",
                 project1Title: "Sistema de Login Corporativo",
                 project1Desc: "Sistema de autenticação corporativa com níveis de acesso (Funcionário, Equipe de T.I e Administrador), gerenciamento de chamados técnicos e controle de usuários.",
+                featuresTitle: "Funcionalidades",
+                techTitle: "Tecnologias usadas",
+                project1Feature1: "Autenticação de usuários com fluxo corporativo.",
+                project1Feature2: "Níveis de acesso para Funcionário, Equipe de T.I e Administrador.",
+                project1Feature3: "Gerenciamento de chamados técnicos e controle de usuários.",
                 project2Title: "Portfólio Pessoal",
                 project2Desc: "Portfólio profissional responsivo desenvolvido para apresentar habilidades, tecnologias e projetos.",
+                project2Feature1: "Layout moderno e responsivo para desktop e celular.",
+                project2Feature2: "Alternância de tema claro/escuro e idioma PT/EN.",
+                project2Feature3: "Contato profissional com currículo, redes e formulário.",
                 btnViewProject: "Ver Projeto",
+                btnViewCode: "Ver código",
+                differentialsLabel: "Diferenciais",
+                differentialsTitle: "Detalhes que aproximam os projetos de um ambiente profissional.",
+                differentialsIntro: "Pontos técnicos pensados para demonstrar prática com publicação, usabilidade, segurança e organização.",
+                diffDeployTitle: "Deploy",
+                diffDeployText: "Projetos publicados e acessíveis online para demonstração.",
+                diffResponsiveTitle: "Responsividade",
+                diffResponsiveText: "Interfaces adaptadas para celular, tablet e desktop.",
+                diffAuthTitle: "Autenticação",
+                diffAuthText: "Fluxos de login pensados para acesso seguro e organizado.",
+                diffCodeTitle: "Organização de código",
+                diffCodeText: "Separação clara de responsabilidades e estrutura fácil de evoluir.",
+                diffAccessTitle: "Níveis de acesso",
+                diffAccessText: "Perfis distintos para usuários, equipe de T.I e administradores.",
                 contactLabel: "Contato",
                 contactTitle: "Vamos conversar sobre oportunidades.",
                 contactIntro: "Aberta a estágios, projetos, networking e oportunidades para evoluir na área de tecnologia.",
@@ -1374,6 +1629,7 @@
                 navAbout: "About",
                 navSkills: "Skills",
                 navProjects: "Projects",
+                navDifferentials: "Differentials",
                 navContact: "Contact",
                 heroPill: "Available for technology opportunities",
                 heroSubtitle: "Full Stack Developer in training",
@@ -1388,8 +1644,8 @@
                 aboutLabel: "About me",
                 aboutTitle: "Professional profile focused on web development.",
                 aboutIntro: "Constantly evolving, focused on building organized, responsive and useful solutions for people and companies.",
-                aboutP1: "I am Alane Martins, a Computer Science student and Full Stack Developer in training. I am looking for an opportunity in technology to apply my knowledge, grow professionally and contribute to real projects.",
-                aboutP2: "I am interested in web development, user authentication, responsive interfaces, code organization and building systems that solve everyday problems. My profile combines dedication, continuous learning and the desire to grow with technology teams.",
+                aboutP1: "Hello! I am Alane Martins, a Computer Science student and Full Stack Developer in training. I am interested in web development and building functional, responsive and well-structured systems focused on solving real problems.",
+                aboutP2: "I am currently developing practical projects involving user authentication, responsive interfaces, code organization and application deployment. I am looking for an opportunity in technology to keep learning, gain hands-on experience and contribute to innovative teams and projects.",
                 aboutFocus1: "Solid front-end foundation with HTML, CSS, JavaScript and React.",
                 aboutFocus2: "Back-end studies with Node.js, Python and Java.",
                 aboutFocus3: "Interest in corporate systems, databases and technical support.",
@@ -1407,9 +1663,31 @@
                 projectStatusOnline: "Online",
                 project1Title: "Corporate Login System",
                 project1Desc: "Corporate authentication system with access levels (Employee, IT Team and Administrator), technical ticket management and user control.",
+                featuresTitle: "Features",
+                techTitle: "Technologies used",
+                project1Feature1: "User authentication with a corporate access flow.",
+                project1Feature2: "Access levels for Employee, IT Team and Administrator.",
+                project1Feature3: "Technical ticket management and user control.",
                 project2Title: "Personal Portfolio",
                 project2Desc: "Responsive professional portfolio developed to present skills, technologies and projects.",
+                project2Feature1: "Modern responsive layout for desktop and mobile.",
+                project2Feature2: "Light/dark theme toggle and PT/EN language switch.",
+                project2Feature3: "Professional contact area with resume, networks and form.",
                 btnViewProject: "View Project",
+                btnViewCode: "View Code",
+                differentialsLabel: "Differentials",
+                differentialsTitle: "Details that bring the projects closer to a professional environment.",
+                differentialsIntro: "Technical points designed to demonstrate practice with publishing, usability, security and organization.",
+                diffDeployTitle: "Deploy",
+                diffDeployText: "Projects published and available online for demonstration.",
+                diffResponsiveTitle: "Responsiveness",
+                diffResponsiveText: "Interfaces adapted for mobile, tablet and desktop.",
+                diffAuthTitle: "Authentication",
+                diffAuthText: "Login flows designed for secure and organized access.",
+                diffCodeTitle: "Code organization",
+                diffCodeText: "Clear separation of responsibilities and a structure that is easy to evolve.",
+                diffAccessTitle: "Access levels",
+                diffAccessText: "Different profiles for users, IT staff and administrators.",
                 contactLabel: "Contact",
                 contactTitle: "Let's talk about opportunities.",
                 contactIntro: "Open to internships, projects, networking and opportunities to grow in technology.",
