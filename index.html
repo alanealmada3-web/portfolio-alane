@@ -748,6 +748,7 @@
                 radial-gradient(circle at 18% 18%, rgba(139, 92, 246, 0.32), transparent 12rem),
                 linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.72));
             aspect-ratio: 16 / 10;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
         }
 
         [data-theme="light"] .project-media {
@@ -756,52 +757,19 @@
                 linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(226, 232, 240, 0.82));
         }
 
-        .project-media::before {
-            content: "";
-            position: absolute;
-            inset: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+        .project-image {
+            display: block;
+            width: 100%;
+            height: 100%;
             border-radius: var(--radius);
-            background: rgba(2, 6, 23, 0.54);
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.35s ease, filter 0.35s ease;
         }
 
-        [data-theme="light"] .project-media::before {
-            background: rgba(255, 255, 255, 0.68);
-        }
-
-        .mockup-bar {
-            position: absolute;
-            top: 26px;
-            left: 28px;
-            right: 28px;
-            height: 12px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            opacity: 0.72;
-        }
-
-        .mockup-content {
-            position: absolute;
-            inset: 56px 28px 26px;
-            display: grid;
-            grid-template-columns: 0.7fr 1fr;
-            gap: 12px;
-        }
-
-        .mockup-panel,
-        .mockup-row {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius);
-            background: rgba(255, 255, 255, 0.065);
-        }
-
-        .mockup-list {
-            display: grid;
-            gap: 8px;
-        }
-
-        .mockup-row {
-            min-height: 18px;
+        .project-card:hover .project-image {
+            filter: saturate(1.08) contrast(1.04);
+            transform: scale(1.035);
         }
 
         .project-section-title {
@@ -1352,17 +1320,8 @@
                     <div class="projects-grid">
                         <article class="project-card">
                             <div>
-                                <div class="project-media" aria-label="Prévia visual do Sistema de Login Corporativo">
-                                    <div class="mockup-bar"></div>
-                                    <div class="mockup-content">
-                                        <div class="mockup-panel"></div>
-                                        <div class="mockup-list">
-                                            <span class="mockup-row"></span>
-                                            <span class="mockup-row"></span>
-                                            <span class="mockup-row"></span>
-                                            <span class="mockup-row"></span>
-                                        </div>
-                                    </div>
+                                <div class="project-media">
+                                    <img src="images/sistemalogin.png" class="project-image" alt="Tela do projeto Sistema de Login Corporativo">
                                 </div>
                                 <div class="project-top">
                                     <span class="project-icon">SL</span>
@@ -1399,17 +1358,8 @@
 
                         <article class="project-card">
                             <div>
-                                <div class="project-media" aria-label="Prévia visual do Portfólio Pessoal">
-                                    <div class="mockup-bar"></div>
-                                    <div class="mockup-content">
-                                        <div class="mockup-panel"></div>
-                                        <div class="mockup-list">
-                                            <span class="mockup-row"></span>
-                                            <span class="mockup-row"></span>
-                                            <span class="mockup-row"></span>
-                                            <span class="mockup-row"></span>
-                                        </div>
-                                    </div>
+                                <div class="project-media">
+                                    <img src="images/portfolio.png" class="project-image" alt="Tela do projeto Portfólio Pessoal">
                                 </div>
                                 <div class="project-top">
                                     <span class="project-icon">PF</span>
