@@ -74,18 +74,6 @@
                 linear-gradient(135deg, #f8fafc 0%, #eef2ff 52%, #ffffff 100%);
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-            background-size: 64px 64px;
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 76%);
-        }
-
         body::after {
             content: "";
             position: fixed;
@@ -419,6 +407,105 @@
             border-radius: 999px;
             background: radial-gradient(circle, rgba(139, 92, 246, 0.28), transparent 62%);
             filter: blur(18px);
+        }
+
+        .scroll-down {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            z-index: 12;
+            display: inline-grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--text);
+            cursor: pointer;
+            transform: translateX(-50%);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
+            transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+            animation: scroll-bounce 2.2s ease-in-out infinite;
+        }
+
+        .scroll-down.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-50%) translateY(12px);
+        }
+
+        .scroll-down:hover,
+        .scroll-down:focus-visible {
+            border-color: rgba(34, 211, 238, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        .scroll-down svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            right: 22px;
+            bottom: 24px;
+            z-index: 12;
+            display: inline-grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--text);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
+            transition: opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+        }
+
+        .scroll-top.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover,
+        .scroll-top:focus-visible {
+            border-color: rgba(34, 211, 238, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .scroll-top svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        [data-theme="light"] .scroll-down {
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 16px 42px rgba(15, 23, 42, 0.12);
+        }
+
+        [data-theme="light"] .scroll-top {
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 16px 42px rgba(15, 23, 42, 0.12);
+        }
+
+        @keyframes scroll-bounce {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
         }
 
         .code-card {
@@ -1052,7 +1139,7 @@
 
             .hero {
                 min-height: auto;
-                padding-top: 156px;
+                padding: 156px 0 84px;
             }
 
             .hero-panel {
@@ -1102,6 +1189,7 @@
 
             .hero {
                 padding-top: 148px;
+                padding-bottom: 88px;
             }
 
             .code-content,
@@ -1121,6 +1209,10 @@
         @media (prefers-reduced-motion: reduce) {
             .sakura-layer {
                 display: none;
+            }
+
+            .scroll-down {
+                animation: none;
             }
 
             *,
@@ -1233,6 +1325,12 @@
                         </div>
                     </div>
                 </aside>
+
+                <a class="scroll-down" href="#sobre" aria-label="Ir para a seção Sobre" data-scroll-target="#sobre">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </section>
 
             <section class="section" id="sobre">
@@ -1500,6 +1598,12 @@
                 <p data-i18n="footer">© 2026 Alane Martins. Todos os direitos reservados.</p>
             </div>
         </footer>
+
+        <a class="scroll-top" href="#inicio" aria-label="Voltar ao topo" data-scroll-target="#inicio">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+                <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
     </div>
 
     <script>
@@ -1721,6 +1825,49 @@
             applyLanguage(nextLanguage);
             localStorage.setItem("portfolio-language", nextLanguage);
         });
+
+        document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
+                const target = document.querySelector(button.dataset.scrollTarget);
+
+                if (target) {
+                    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+
+                    window.scrollTo({
+                        top: targetTop,
+                        behavior: "smooth",
+                    });
+                }
+            });
+        });
+
+        const scrollDownButton = document.querySelector(".scroll-down");
+        const scrollTopButton = document.querySelector(".scroll-top");
+        const heroSection = document.querySelector(".hero");
+
+        function updateScrollDownVisibility() {
+            if (!scrollDownButton || !heroSection) {
+                return;
+            }
+
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            scrollDownButton.classList.toggle("is-hidden", heroBottom < window.innerHeight * 0.42);
+        }
+
+        updateScrollDownVisibility();
+        window.addEventListener("scroll", updateScrollDownVisibility, { passive: true });
+
+        function updateScrollTopVisibility() {
+            if (!scrollTopButton) {
+                return;
+            }
+
+            scrollTopButton.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.85);
+        }
+
+        updateScrollTopVisibility();
+        window.addEventListener("scroll", updateScrollTopVisibility, { passive: true });
 
         document.querySelectorAll(".project-image").forEach((image) => {
             image.addEventListener("error", () => {
