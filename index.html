@@ -738,33 +738,25 @@
             opacity: 1;
         }
 
-        .project-media {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 22px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius);
-            background:
-                radial-gradient(circle at 18% 18%, rgba(139, 92, 246, 0.32), transparent 12rem),
-                linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.72));
-            aspect-ratio: 16 / 10;
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
-        }
-
-        [data-theme="light"] .project-media {
-            background:
-                radial-gradient(circle at 18% 18%, rgba(139, 92, 246, 0.18), transparent 12rem),
-                linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(226, 232, 240, 0.82));
-        }
-
         .project-image {
             display: block;
             width: 100%;
-            height: 100%;
-            border-radius: var(--radius);
+            height: clamp(200px, 22vw, 260px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 16px;
             object-fit: cover;
             object-position: top center;
+            margin-bottom: 20px;
+            background:
+                linear-gradient(135deg, rgba(139, 92, 246, 0.16), rgba(6, 182, 212, 0.12)),
+                rgba(15, 23, 42, 0.92);
             transition: transform 0.35s ease, filter 0.35s ease;
+        }
+
+        .project-image.is-missing {
+            object-fit: contain;
+            padding: 28px;
+            opacity: 0.9;
         }
 
         .project-card:hover .project-image {
@@ -1085,6 +1077,10 @@
             .btn {
                 width: 100%;
             }
+
+            .project-image {
+                height: 180px;
+            }
         }
 
         @media (max-width: 520px) {
@@ -1134,6 +1130,27 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        .project-image {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            object-position: top center;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            background:
+                linear-gradient(135deg, rgba(139, 92, 246, 0.16), rgba(6, 182, 212, 0.12)),
+                rgba(15, 23, 42, 0.92);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+        }
+
+        @media (max-width: 768px) {
+            .project-image {
+                height: 180px;
+            }
+        }
     </style>
 </head>
 
@@ -1180,7 +1197,6 @@
                         <a class="btn" href="#projetos" data-i18n="btnProjects">Ver Projetos</a>
                         <a class="btn secondary" href="https://github.com/alanealmada3-web" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn secondary" href="https://www.linkedin.com/in/alane-de-almada-craveiro-martins-b6b93a292/" target="_blank" rel="noopener">LinkedIn</a>
-                        <a class="btn secondary" href="curriculo.pdf" download data-i18n="btnResume">Baixar Currículo</a>
                     </div>
                 </div>
 
@@ -1320,9 +1336,7 @@
                     <div class="projects-grid">
                         <article class="project-card">
                             <div>
-                                <div class="project-media">
-                                    <img src="images/sistemalogin.png" class="project-image" alt="Tela do projeto Sistema de Login Corporativo">
-                                </div>
+                                <img src="images/sistema-login.png" class="project-image" alt="Tela do projeto Sistema de Login Corporativo">
                                 <div class="project-top">
                                     <span class="project-icon">SL</span>
                                     <span class="project-status" data-i18n="projectStatusProgress">Em evolução</span>
@@ -1358,9 +1372,7 @@
 
                         <article class="project-card">
                             <div>
-                                <div class="project-media">
-                                    <img src="images/portfolio.png" class="project-image" alt="Tela do projeto Portfólio Pessoal">
-                                </div>
+                                <img src="images/portfolio.png" class="project-image" alt="Tela do projeto Portfólio Pessoal">
                                 <div class="project-top">
                                     <span class="project-icon">PF</span>
                                     <span class="project-status" data-i18n="projectStatusOnline">Online</span>
@@ -1508,7 +1520,6 @@
                 heroSubtitle: "Desenvolvedora Full Stack em formação",
                 heroText: "Estudante de Ciência da Computação",
                 btnProjects: "Ver Projetos",
-                btnResume: "Baixar Currículo",
                 codeProfile: "\"Full Stack em formação\"",
                 codeGoal: "\"Estágio em TI\"",
                 statTech: "tecnologias",
@@ -1585,7 +1596,6 @@
                 heroSubtitle: "Full Stack Developer in training",
                 heroText: "Computer Science student",
                 btnProjects: "View Projects",
-                btnResume: "Download Resume",
                 codeProfile: "\"Full Stack in training\"",
                 codeGoal: "\"IT Internship\"",
                 statTech: "technologies",
@@ -1708,6 +1718,14 @@
             const nextLanguage = root.dataset.language === "pt" ? "en" : "pt";
             applyLanguage(nextLanguage);
             localStorage.setItem("portfolio-language", nextLanguage);
+        });
+
+        document.querySelectorAll(".project-image").forEach((image) => {
+            image.addEventListener("error", () => {
+                image.classList.add("is-missing");
+                image.removeAttribute("src");
+                image.alt = "Imagem do projeto em breve";
+            });
         });
 
         function createSakuraPetals() {
