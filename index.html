@@ -110,6 +110,7 @@
             left: var(--left);
             color: var(--petal-color);
             font-size: var(--size);
+            line-height: 1;
             opacity: var(--opacity);
             filter: drop-shadow(0 8px 14px rgba(236, 72, 153, 0.18));
             animation: sakura-fall var(--duration) linear var(--delay) infinite;
@@ -317,6 +318,39 @@
             max-width: 820px;
             font-size: clamp(3rem, 8vw, 6.9rem);
             font-weight: 900;
+        }
+
+        .hero-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+        }
+
+        .hero-title .first-name,
+        .hero-title .last-name {
+            display: block;
+        }
+
+        .hero-title .first-name {
+            background: linear-gradient(90deg, #ffffff 0%, #e9d5ff 48%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        [data-theme="light"] .hero-title .first-name {
+            background: linear-gradient(90deg, #0f172a 0%, #4f46e5 58%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-title .last-name {
+            background: linear-gradient(90deg, #a78bfa, #60a5fa, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .gradient-text {
@@ -553,6 +587,36 @@
             margin-bottom: 10px;
             color: #dbeafe;
             overflow-wrap: anywhere;
+        }
+
+        .code-content.is-typing .code-line {
+            min-height: 1.55em;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 0.62em;
+            height: 1.05em;
+            margin-left: 2px;
+            border-right: 2px solid #93c5fd;
+            vertical-align: -0.16em;
+            animation: cursor-blink 0.9s steps(2, start) infinite;
+        }
+
+        [data-theme="light"] .typing-cursor {
+            border-right-color: #2563eb;
+        }
+
+        @keyframes cursor-blink {
+            0%,
+            42% {
+                opacity: 1;
+            }
+
+            43%,
+            100% {
+                opacity: 0;
+            }
         }
 
         [data-theme="light"] .code-line {
@@ -1245,6 +1309,216 @@
                 height: 180px;
             }
         }
+
+        /* Professional refinement */
+        :root {
+            --bg: #070b12;
+            --bg-soft: #0d1421;
+            --surface: rgba(13, 20, 33, 0.78);
+            --surface-strong: rgba(13, 20, 33, 0.96);
+            --card: rgba(255, 255, 255, 0.045);
+            --line: rgba(148, 163, 184, 0.16);
+            --text: #f8fafc;
+            --muted: #9aa7b8;
+            --muted-strong: #cbd5e1;
+            --primary: #5b8cff;
+            --secondary: #38bdf8;
+            --accent: #f2a3bd;
+            --shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+            --radius: 10px;
+        }
+
+        [data-theme="light"] {
+            --bg: #f7f9fc;
+            --bg-soft: #eef3f8;
+            --surface: rgba(255, 255, 255, 0.82);
+            --surface-strong: rgba(255, 255, 255, 0.96);
+            --card: rgba(15, 23, 42, 0.035);
+            --line: rgba(15, 23, 42, 0.11);
+            --text: #111827;
+            --muted: #5b6678;
+            --muted-strong: #344054;
+            --shadow: 0 18px 44px rgba(15, 23, 42, 0.09);
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 50% -10%, rgba(91, 140, 255, 0.12), transparent 34rem),
+                linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 48%, var(--bg) 100%);
+            letter-spacing: 0;
+        }
+
+        [data-theme="light"] body {
+            background:
+                radial-gradient(circle at 50% -10%, rgba(91, 140, 255, 0.11), transparent 34rem),
+                linear-gradient(180deg, #fbfdff 0%, #f4f7fb 48%, #ffffff 100%);
+        }
+
+        body::after {
+            display: none;
+        }
+
+        .navbar {
+            background: rgba(7, 11, 18, 0.78);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        [data-theme="light"] .navbar {
+            background: rgba(255, 255, 255, 0.82);
+        }
+
+        .brand-mark,
+        .icon-box,
+        .project-icon,
+        .differential-icon {
+            background: linear-gradient(135deg, #5b8cff, #8bd3ff);
+            box-shadow: none;
+        }
+
+        .hero {
+            min-height: 100vh;
+            padding: 132px 0 96px;
+            gap: 56px;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            letter-spacing: 0;
+        }
+
+        .hero-subtitle {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .hero-text,
+        .section-description,
+        .panel p,
+        .project-card p,
+        .contact-help {
+            color: var(--muted);
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.055);
+            border-color: var(--line);
+            box-shadow: none;
+        }
+
+        [data-theme="light"] .pill {
+            background: rgba(15, 23, 42, 0.04);
+        }
+
+        .hero-panel::before,
+        .project-card::before {
+            display: none;
+        }
+
+        .code-card,
+        .panel,
+        .skill-group,
+        .project-card,
+        .differential-card,
+        .contact-card,
+        .contact-form {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-group:hover,
+        .project-card:hover,
+        .differential-card:hover,
+        .contact-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(91, 140, 255, 0.34);
+            box-shadow: 0 22px 54px rgba(0, 0, 0, 0.22);
+        }
+
+        [data-theme="light"] .skill-group:hover,
+        [data-theme="light"] .project-card:hover,
+        [data-theme="light"] .differential-card:hover,
+        [data-theme="light"] .contact-card:hover {
+            box-shadow: 0 22px 52px rgba(15, 23, 42, 0.11);
+        }
+
+        .btn {
+            border: 1px solid rgba(91, 140, 255, 0.56);
+            background: #5b8cff;
+            box-shadow: 0 12px 26px rgba(91, 140, 255, 0.18);
+        }
+
+        .hero-actions .btn:not(.secondary) {
+            border-color: rgba(167, 139, 250, 0.56);
+            background: linear-gradient(90deg, #a78bfa, #60a5fa, #22d3ee);
+            box-shadow: 0 14px 30px rgba(96, 165, 250, 0.22);
+        }
+
+        .btn:hover,
+        .btn:focus-visible {
+            box-shadow: 0 16px 32px rgba(91, 140, 255, 0.24);
+        }
+
+        .hero-actions .btn:not(.secondary):hover,
+        .hero-actions .btn:not(.secondary):focus-visible {
+            box-shadow: 0 18px 38px rgba(96, 165, 250, 0.28);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--line);
+            color: var(--text);
+            box-shadow: none;
+        }
+
+        [data-theme="light"] .btn.secondary {
+            background: rgba(15, 23, 42, 0.035);
+        }
+
+        .skill-tag,
+        .project-tag,
+        .project-status {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--muted-strong);
+        }
+
+        [data-theme="light"] .skill-tag,
+        [data-theme="light"] .project-tag,
+        [data-theme="light"] .project-status {
+            background: rgba(15, 23, 42, 0.035);
+        }
+
+        .project-image {
+            border-color: var(--line);
+            background: var(--surface-strong);
+            box-shadow: none;
+        }
+
+        .scroll-down,
+        .scroll-top {
+            background: rgba(255, 255, 255, 0.055);
+            border-color: var(--line);
+            box-shadow: none;
+        }
+
+        [data-theme="light"] .scroll-down,
+        [data-theme="light"] .scroll-top {
+            background: rgba(255, 255, 255, 0.82);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100vh;
+                padding: 118px 0 88px;
+                gap: 34px;
+            }
+
+            .hero-actions {
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -1281,16 +1555,21 @@
             <section class="hero container" id="inicio">
                 <div class="hero-copy">
                     <span class="pill"><span class="pulse"></span> <span data-i18n="heroPill">Disponível para oportunidades em tecnologia</span></span>
-                    <h1><span class="gradient-text">Alane Martins</span></h1>
+                    <h1 class="hero-title">
+                        <span class="first-name">Alane</span>
+                        <span class="last-name">Martins</span>
+                    </h1>
                     <p class="hero-subtitle" data-i18n="heroSubtitle">Desenvolvedora Full Stack em formação</p>
                     <p class="hero-text" data-i18n="heroText">
-                        Estudante de Ciência da Computação
+                        Crio aplicações web funcionais, responsivas e bem organizadas, com foco em autenticação, experiência do usuário e evolução contínua.
                     </p>
 
                     <div class="hero-actions" aria-label="Ações principais">
                         <a class="btn" href="#projetos" data-i18n="btnProjects">Ver Projetos</a>
                         <a class="btn secondary" href="https://github.com/alanealmada3-web" target="_blank" rel="noopener">GitHub</a>
-                        <a class="btn secondary" href="https://www.linkedin.com/in/alane-de-almada-craveiro-martins-b6b93a292/" target="_blank" rel="noopener">LinkedIn</a>
+                        <a class="btn secondary" href="https://www.linkedin.com/in/alanemartinsdev/" target="_blank" rel="noopener">LinkedIn</a>
+                        <a class="btn secondary" href="./curriculo.pdf" download="curriculo-alane-martins.pdf" data-i18n="btnResume">Baixar CV</a>
+                        <a class="btn secondary" href="#contato" data-i18n="btnContact">Contato</a>
                     </div>
                 </div>
 
@@ -1348,15 +1627,10 @@
                     <div class="about-grid">
                         <article class="panel">
                             <p data-i18n="aboutP1">
-                                Olá! Sou Alane Martins, estudante de Ciência da Computação e desenvolvedora Full Stack em formação.
-                                Tenho interesse em desenvolvimento web e na criação de sistemas funcionais, responsivos e bem
-                                estruturados, com foco em resolver problemas reais.
+                                Olá! Sou Alane Martins, estudante de Ciência da Computação e desenvolvedora Full Stack em formação. Tenho interesse em desenvolvimento web e na criação de sistemas funcionais, responsivos e bem estruturados, com foco em resolver problemas reais.
                             </p>
                             <p data-i18n="aboutP2">
-                                Atualmente, venho desenvolvendo projetos práticos envolvendo autenticação de usuários, interfaces
-                                responsivas, organização de código e deploy de aplicações. Estou em busca de uma oportunidade na
-                                área de tecnologia para continuar aprendendo, ganhar experiência prática e contribuir com equipes
-                                e projetos inovadores.
+                                Atualmente, venho desenvolvendo projetos práticos envolvendo autenticação de usuários, interfaces responsivas, organização de código e deploy de aplicações. Estou em busca de uma oportunidade na área de tecnologia para continuar aprendendo, ganhar experiência prática e contribuir com equipes e projetos inovadores.
                             </p>
                         </article>
 
@@ -1376,10 +1650,10 @@
                     <div class="section-heading">
                         <div>
                             <span class="section-label" data-i18n="skillsLabel">Skills</span>
-                            <h2 data-i18n="skillsTitle">Tecnologias organizadas por área.</h2>
+                            <h2 data-i18n="skillsTitle">Tecnologias que uso nos meus projetos.</h2>
                         </div>
                         <p class="section-description" data-i18n="skillsIntro">
-                            Uma base técnica em crescimento para atuar no desenvolvimento de aplicações completas.
+                            Ferramentas que venho aplicando em projetos web, autenticação, interfaces responsivas e deploy.
                         </p>
                     </div>
 
@@ -1398,6 +1672,7 @@
                             <h3><span class="icon-box">BE</span><span data-i18n="backEnd">Back-end</span></h3>
                             <div class="skill-tags">
                                 <span class="skill-tag"><span class="tech-dot"></span>Node.js</span>
+                                <span class="skill-tag"><span class="tech-dot"></span>Express</span>
                                 <span class="skill-tag"><span class="tech-dot"></span>Python</span>
                                 <span class="skill-tag"><span class="tech-dot"></span>Java</span>
                             </div>
@@ -1406,6 +1681,7 @@
                         <article class="skill-group reveal-delay-2">
                             <h3><span class="icon-box">DB</span><span data-i18n="database">Banco de Dados</span></h3>
                             <div class="skill-tags">
+                                <span class="skill-tag"><span class="tech-dot"></span>MongoDB</span>
                                 <span class="skill-tag"><span class="tech-dot"></span>SQL</span>
                             </div>
                         </article>
@@ -1426,10 +1702,10 @@
                     <div class="section-heading">
                         <div>
                             <span class="section-label" data-i18n="projectsLabel">Projetos</span>
-                            <h2 data-i18n="projectsTitle">Projetos com foco em prática profissional.</h2>
+                            <h2 data-i18n="projectsTitle">Projetos com foco em problemas reais.</h2>
                         </div>
                         <p class="section-description" data-i18n="projectsIntro">
-                            Soluções desenvolvidas para demonstrar lógica, interface, organização e visão de produto.
+                            Aplicações pensadas como produtos: interface clara, fluxo de uso definido e tecnologias aplicadas com propósito.
                         </p>
                     </div>
 
@@ -1443,8 +1719,7 @@
                                 </div>
                                 <h3 data-i18n="project1Title">Sistema de Login Corporativo</h3>
                                 <p data-i18n="project1Desc">
-                                    Sistema de autenticação corporativa com níveis de acesso (Funcionário, Equipe de T.I
-                                    e Administrador), gerenciamento de chamados técnicos e controle de usuários.
+                                    Aplicação full stack para gerenciamento interno, autenticação de usuários, perfis de acesso e controle de chamados técnicos.
                                 </p>
                                 <strong class="project-section-title" data-i18n="featuresTitle">Funcionalidades</strong>
                                 <ul class="feature-list">
@@ -1456,6 +1731,7 @@
                                 <div class="project-tags">
                                     <span class="project-tag">JavaScript</span>
                                     <span class="project-tag">Node.js</span>
+                                    <span class="project-tag">Express</span>
                                     <span class="project-tag">MongoDB</span>
                                     <span class="project-tag">HTML</span>
                                     <span class="project-tag">CSS</span>
@@ -1465,8 +1741,8 @@
                                 </div>
                             </div>
                             <div class="project-actions">
-                                <a class="btn" href="https://sistema-login-kanz.onrender.com/" target="_blank" rel="noopener" data-i18n="btnViewProject">Ver Projeto</a>
-                                <a class="btn secondary" href="https://github.com/alanealmada3-web/sistema-login" target="_blank" rel="noopener" data-i18n="btnViewCode">Ver código</a>
+                                <a class="btn" href="https://sistema-login-kanz.onrender.com/" target="_blank" rel="noopener" data-i18n="btnViewProject">Ver projeto</a>
+                                <a class="btn secondary" href="https://github.com/alanealmada3-web/sistema-login" target="_blank" rel="noopener" data-i18n="btnViewCode">GitHub</a>
                             </div>
                         </article>
 
@@ -1477,10 +1753,9 @@
                                     <span class="project-icon">PF</span>
                                     <span class="project-status" data-i18n="projectStatusOnline">Online</span>
                                 </div>
-                                <h3 data-i18n="project2Title">Portfólio Pessoal</h3>
+                                <h3 data-i18n="project2Title">Portfólio Profissional</h3>
                                 <p data-i18n="project2Desc">
-                                    Portfólio profissional responsivo desenvolvido para apresentar habilidades,
-                                    tecnologias e projetos.
+                                    Site responsivo para apresentar perfil profissional, tecnologias, projetos e canais de contato de forma clara para recrutadores.
                                 </p>
                                 <strong class="project-section-title" data-i18n="featuresTitle">Funcionalidades</strong>
                                 <ul class="feature-list">
@@ -1498,8 +1773,8 @@
                                 </div>
                             </div>
                             <div class="project-actions">
-                                <a class="btn" href="https://alanealmada3-web.github.io/portfolio/" target="_blank" rel="noopener" data-i18n="btnViewProject">Ver Projeto</a>
-                                <a class="btn secondary" href="https://github.com/alanealmada3-web/portfolio" target="_blank" rel="noopener" data-i18n="btnViewCode">Ver código</a>
+                                <a class="btn" href="https://alanealmada3-web.github.io/portfolio-alane/" target="_blank" rel="noopener" data-i18n="btnViewProject">Ver projeto</a>
+                                <a class="btn secondary" href="https://github.com/alanealmada3-web/portfolio-alane" target="_blank" rel="noopener" data-i18n="btnViewCode">GitHub</a>
                             </div>
                         </article>
                     </div>
@@ -1618,14 +1893,16 @@
             pt: {
                 brandAria: "Voltar para o início",
                 navAbout: "Sobre",
-                navSkills: "Skills",
+                navSkills: "Tecnologias",
                 navProjects: "Projetos",
                 navDifferentials: "Diferenciais",
                 navContact: "Contato",
                 heroPill: "Disponível para oportunidades em tecnologia",
                 heroSubtitle: "Desenvolvedora Full Stack em formação",
-                heroText: "Estudante de Ciência da Computação",
+                heroText: "Crio aplicações web funcionais, responsivas e bem organizadas, com foco em autenticação, experiência do usuário e evolução contínua.",
                 btnProjects: "Ver Projetos",
+                btnResume: "Baixar CV",
+                btnContact: "Contato",
                 codeProfile: "\"Full Stack em formação\"",
                 codeGoal: "\"Estágio em TI\"",
                 statTech: "tecnologias",
@@ -1637,34 +1914,34 @@
                 aboutP1: "Olá! Sou Alane Martins, estudante de Ciência da Computação e desenvolvedora Full Stack em formação. Tenho interesse em desenvolvimento web e na criação de sistemas funcionais, responsivos e bem estruturados, com foco em resolver problemas reais.",
                 aboutP2: "Atualmente, venho desenvolvendo projetos práticos envolvendo autenticação de usuários, interfaces responsivas, organização de código e deploy de aplicações. Estou em busca de uma oportunidade na área de tecnologia para continuar aprendendo, ganhar experiência prática e contribuir com equipes e projetos inovadores.",
                 aboutFocus1: "Boa base em front-end com HTML, CSS, JavaScript e React.",
-                aboutFocus2: "Estudos em back-end com Node.js, Python e Java.",
-                aboutFocus3: "Interesse em sistemas corporativos, banco de dados e suporte técnico.",
-                skillsLabel: "Skills",
-                skillsTitle: "Tecnologias organizadas por área.",
-                skillsIntro: "Uma base técnica em crescimento para atuar no desenvolvimento de aplicações completas.",
+                aboutFocus2: "Estudos em back-end com Node.js, Express, Python e Java.",
+                aboutFocus3: "Interesse em sistemas corporativos, MongoDB, SQL, autenticação e deploy.",
+                skillsLabel: "Tecnologias",
+                skillsTitle: "Tecnologias que uso nos meus projetos.",
+                skillsIntro: "Ferramentas que venho aplicando em projetos web, autenticação, interfaces responsivas e deploy.",
                 frontEnd: "Front-end",
                 backEnd: "Back-end",
                 database: "Banco de Dados",
                 tools: "Ferramentas",
                 projectsLabel: "Projetos",
-                projectsTitle: "Projetos com foco em prática profissional.",
-                projectsIntro: "Soluções desenvolvidas para demonstrar lógica, interface, organização e visão de produto.",
+                projectsTitle: "Projetos com foco em problemas reais.",
+                projectsIntro: "Aplicações pensadas como produtos: interface clara, fluxo de uso definido e tecnologias aplicadas com propósito.",
                 projectStatusProgress: "Em evolução",
                 projectStatusOnline: "Online",
                 project1Title: "Sistema de Login Corporativo",
-                project1Desc: "Sistema de autenticação corporativa com níveis de acesso (Funcionário, Equipe de T.I e Administrador), gerenciamento de chamados técnicos e controle de usuários.",
+                project1Desc: "Aplicação full stack para gerenciamento interno, autenticação de usuários, perfis de acesso e controle de chamados técnicos.",
                 featuresTitle: "Funcionalidades",
                 techTitle: "Tecnologias usadas",
                 project1Feature1: "Autenticação de usuários com fluxo corporativo.",
                 project1Feature2: "Níveis de acesso para Funcionário, Equipe de T.I e Administrador.",
                 project1Feature3: "Gerenciamento de chamados técnicos e controle de usuários.",
-                project2Title: "Portfólio Pessoal",
-                project2Desc: "Portfólio profissional responsivo desenvolvido para apresentar habilidades, tecnologias e projetos.",
+                project2Title: "Portfólio Profissional",
+                project2Desc: "Site responsivo para apresentar perfil profissional, tecnologias, projetos e canais de contato de forma clara para recrutadores.",
                 project2Feature1: "Layout moderno e responsivo para desktop e celular.",
                 project2Feature2: "Alternância de tema claro/escuro e idioma PT/EN.",
                 project2Feature3: "Contato profissional com currículo, redes e formulário.",
-                btnViewProject: "Ver Projeto",
-                btnViewCode: "Ver código",
+                btnViewProject: "Ver projeto",
+                btnViewCode: "GitHub",
                 differentialsLabel: "Diferenciais",
                 differentialsTitle: "Detalhes que aproximam os projetos de um ambiente profissional.",
                 differentialsIntro: "Pontos técnicos pensados para demonstrar prática com publicação, usabilidade, segurança e organização.",
@@ -1694,14 +1971,16 @@
             en: {
                 brandAria: "Back to top",
                 navAbout: "About",
-                navSkills: "Skills",
+                navSkills: "Technologies",
                 navProjects: "Projects",
                 navDifferentials: "Differentials",
                 navContact: "Contact",
-                heroPill: "Available for technology opportunities",
+                heroPill: "Available for internships and tech projects",
                 heroSubtitle: "Full Stack Developer in training",
-                heroText: "Computer Science student",
+                heroText: "I build functional, responsive and well-organized web applications, with a focus on authentication, user experience and continuous growth.",
                 btnProjects: "View Projects",
+                btnResume: "Resume",
+                btnContact: "Contact",
                 codeProfile: "\"Full Stack in training\"",
                 codeGoal: "\"IT Internship\"",
                 statTech: "technologies",
@@ -1710,41 +1989,41 @@
                 aboutLabel: "About me",
                 aboutTitle: "Professional profile focused on web development.",
                 aboutIntro: "Constantly evolving, focused on building organized, responsive and useful solutions for people and companies.",
-                aboutP1: "Hello! I am Alane Martins, a Computer Science student and Full Stack Developer in training. I am interested in web development and building functional, responsive and well-structured systems focused on solving real problems.",
-                aboutP2: "I am currently developing practical projects involving user authentication, responsive interfaces, code organization and application deployment. I am looking for an opportunity in technology to keep learning, gain hands-on experience and contribute to innovative teams and projects.",
+                aboutP1: "I am a Computer Science student focused on web development and building modern applications. I have hands-on experience developing full stack projects, authentication systems and responsive interfaces while continuously growing in technology.",
+                aboutP2: "My goal is to contribute to technology teams while deepening my skills in front-end, back-end, code organization and publishing real applications.",
                 aboutFocus1: "Solid front-end foundation with HTML, CSS, JavaScript and React.",
-                aboutFocus2: "Back-end studies with Node.js, Python and Java.",
-                aboutFocus3: "Interest in corporate systems, databases and technical support.",
-                skillsLabel: "Skills",
-                skillsTitle: "Technologies organized by area.",
-                skillsIntro: "A growing technical foundation for working on complete application development.",
+                aboutFocus2: "Back-end studies with Node.js, Express, Python and Java.",
+                aboutFocus3: "Interest in corporate systems, MongoDB, SQL, authentication and deployment.",
+                skillsLabel: "Technologies",
+                skillsTitle: "Technologies I use in my projects.",
+                skillsIntro: "Tools I have been applying in web projects, authentication, responsive interfaces and deployment.",
                 frontEnd: "Front-end",
                 backEnd: "Back-end",
                 database: "Database",
                 tools: "Tools",
                 projectsLabel: "Projects",
-                projectsTitle: "Projects focused on professional practice.",
-                projectsIntro: "Solutions developed to demonstrate logic, interface, organization and product thinking.",
+                projectsTitle: "Projects focused on real problems.",
+                projectsIntro: "Applications designed like products: clear interface, defined user flow and technologies applied with purpose.",
                 projectStatusProgress: "In progress",
                 projectStatusOnline: "Online",
                 project1Title: "Corporate Login System",
-                project1Desc: "Corporate authentication system with access levels (Employee, IT Team and Administrator), technical ticket management and user control.",
+                project1Desc: "Full stack application for internal management, user authentication, access profiles and technical ticket control.",
                 featuresTitle: "Features",
                 techTitle: "Technologies used",
                 project1Feature1: "User authentication with a corporate access flow.",
                 project1Feature2: "Access levels for Employee, IT Team and Administrator.",
                 project1Feature3: "Technical ticket management and user control.",
-                project2Title: "Personal Portfolio",
-                project2Desc: "Responsive professional portfolio developed to present skills, technologies and projects.",
+                project2Title: "Professional Portfolio",
+                project2Desc: "Responsive website to present professional profile, technologies, projects and contact channels clearly for recruiters.",
                 project2Feature1: "Modern responsive layout for desktop and mobile.",
                 project2Feature2: "Light/dark theme toggle and PT/EN language switch.",
                 project2Feature3: "Professional contact area with resume, networks and form.",
-                btnViewProject: "View Project",
-                btnViewCode: "View Code",
+                btnViewProject: "Ver projeto",
+                btnViewCode: "GitHub",
                 differentialsLabel: "Differentials",
                 differentialsTitle: "Details that bring the projects closer to a professional environment.",
                 differentialsIntro: "Technical points designed to demonstrate practice with publishing, usability, security and organization.",
-                diffDeployTitle: "Deploy",
+                diffDeployTitle: "Deployment",
                 diffDeployText: "Projects published and available online for demonstration.",
                 diffResponsiveTitle: "Responsiveness",
                 diffResponsiveText: "Interfaces adapted for mobile, tablet and desktop.",
@@ -1816,6 +2095,102 @@
                 "title",
                 language === "pt" ? "Switch to English" : "Mudar para português"
             );
+
+            typeHeroCode();
+        }
+
+        const codeContent = document.querySelector(".code-content");
+        let codeTypeTimer = 0;
+        let codeTypeRun = 0;
+
+        function waitForCodeTyping(ms) {
+            return new Promise((resolve) => {
+                codeTypeTimer = window.setTimeout(resolve, ms);
+            });
+        }
+
+        async function typeCodeNode(target, source, cursor, runId) {
+            if (runId !== codeTypeRun) {
+                return;
+            }
+
+            if (source.nodeType === Node.TEXT_NODE) {
+                const text = source.textContent || "";
+
+                for (const character of text) {
+                    if (runId !== codeTypeRun) {
+                        return;
+                    }
+
+                    const typedCharacter = document.createTextNode(character);
+
+                    if (target === cursor.parentNode) {
+                        target.insertBefore(typedCharacter, cursor);
+                    } else {
+                        target.appendChild(typedCharacter);
+                    }
+
+                    await waitForCodeTyping(character.trim() ? 34 : 20);
+                }
+
+                return;
+            }
+
+            if (source.nodeType === Node.ELEMENT_NODE) {
+                const clone = source.cloneNode(false);
+                cursor.parentNode.insertBefore(clone, cursor);
+
+                for (const child of Array.from(source.childNodes)) {
+                    await typeCodeNode(clone, child, cursor, runId);
+                }
+            }
+        }
+
+        async function typeHeroCode() {
+            if (!codeContent) {
+                return;
+            }
+
+            window.clearTimeout(codeTypeTimer);
+            const runId = ++codeTypeRun;
+            const lines = Array.from(codeContent.querySelectorAll(".code-line"));
+            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            codeContent.querySelector(".typing-cursor")?.remove();
+
+            const lineSnapshots = lines.map((line) => {
+                line.querySelector(".typing-cursor")?.remove();
+                return Array.from(line.childNodes).map((node) => node.cloneNode(true));
+            });
+
+            if (prefersReducedMotion) {
+                codeContent.classList.remove("is-typing");
+                lines.forEach((line, index) => {
+                    line.replaceChildren(...lineSnapshots[index]);
+                });
+                return;
+            }
+
+            const cursor = document.createElement("span");
+            cursor.className = "typing-cursor";
+            cursor.setAttribute("aria-hidden", "true");
+            codeContent.classList.add("is-typing");
+
+            lines.forEach((line) => line.replaceChildren());
+
+            for (const [index, line] of lines.entries()) {
+                if (runId !== codeTypeRun) {
+                    return;
+                }
+
+                line.appendChild(cursor);
+
+                for (const node of lineSnapshots[index]) {
+                    await typeCodeNode(line, node, cursor, runId);
+                }
+
+                await waitForCodeTyping(140);
+            }
         }
 
         applyLanguage(savedLanguage || "pt");
@@ -1825,6 +2200,43 @@
             applyLanguage(nextLanguage);
             localStorage.setItem("portfolio-language", nextLanguage);
         });
+
+        const sakuraLayer = document.querySelector(".sakura-layer");
+
+        function createSakuraPetals() {
+            if (!sakuraLayer) {
+                return;
+            }
+
+            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (prefersReducedMotion) {
+                sakuraLayer.innerHTML = "";
+                return;
+            }
+
+            const petalCount = window.innerWidth < 768 ? 14 : 24;
+            sakuraLayer.innerHTML = "";
+
+            Array.from({ length: petalCount }).forEach(() => {
+                const petal = document.createElement("span");
+                petal.className = "sakura-petal";
+                petal.textContent = "✿";
+                petal.style.setProperty("--left", `${Math.random() * 100}%`);
+                petal.style.setProperty("--size", `${14 + Math.random() * 14}px`);
+                petal.style.setProperty("--opacity", `${0.38 + Math.random() * 0.44}`);
+                petal.style.setProperty("--duration", `${16 + Math.random() * 18}s`);
+                petal.style.setProperty("--delay", `${Math.random() * -26}s`);
+                petal.style.setProperty("--drift", `${(Math.random() * 120) - 60}px`);
+                petal.style.setProperty(
+                    "--petal-color",
+                    Math.random() > 0.45 ? "rgba(255, 183, 213, 0.88)" : "rgba(255, 224, 236, 0.78)"
+                );
+                sakuraLayer.appendChild(petal);
+            });
+        }
+
+        createSakuraPetals();
+        window.addEventListener("resize", createSakuraPetals);
 
         document.querySelectorAll("[data-scroll-target]").forEach((button) => {
             button.addEventListener("click", (event) => {
@@ -1876,42 +2288,6 @@
                 image.alt = "Imagem do projeto em breve";
             });
         });
-
-        function createSakuraPetals() {
-            const layer = document.querySelector(".sakura-layer");
-            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-            if (!layer || prefersReducedMotion) {
-                return;
-            }
-
-            const petalCount = window.innerWidth < 720 ? 18 : 30;
-            const petalSymbols = ["✿", "❀", "✦"];
-            const petalColors = [
-                "rgba(236, 72, 153, 0.62)",
-                "rgba(244, 114, 182, 0.54)",
-                "rgba(251, 207, 232, 0.72)"
-            ];
-
-            layer.innerHTML = "";
-
-            for (let index = 0; index < petalCount; index += 1) {
-                const petal = document.createElement("span");
-                petal.className = "sakura-petal";
-                petal.textContent = petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
-                petal.style.setProperty("--left", `${Math.random() * 100}vw`);
-                petal.style.setProperty("--size", `${Math.random() * 11 + 10}px`);
-                petal.style.setProperty("--duration", `${Math.random() * 9 + 11}s`);
-                petal.style.setProperty("--delay", `${Math.random() * -18}s`);
-                petal.style.setProperty("--drift", `${(Math.random() * 140 - 70).toFixed(0)}px`);
-                petal.style.setProperty("--opacity", `${Math.random() * 0.34 + 0.38}`);
-                petal.style.setProperty("--petal-color", petalColors[Math.floor(Math.random() * petalColors.length)]);
-                layer.appendChild(petal);
-            }
-        }
-
-        createSakuraPetals();
-        window.addEventListener("resize", createSakuraPetals);
 
         const sections = document.querySelectorAll(".section");
 
